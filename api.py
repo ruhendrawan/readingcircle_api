@@ -45,8 +45,8 @@ def get_reading_activities(grp):
     cursor = cnx.cursor()
 
     query = '''
-
-
+SELECT * FROM tracking  
+WHERE s.grp = %s;
     '''
     cursor.execute(query, (grp,))
     results = cursor.fetchall()
