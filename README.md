@@ -37,12 +37,17 @@ python api.py
 
 - To get quiz results as a CSV file, go to:
   ```
-  http://127.0.0.1:5000/api/quiz_results?grp=INFSCI2470Spring2023
+  http://127.0.0.1:5000/api/raw_quiz_results?grp=INFSCI2470Spring2023
   ```
 
 - To get reading activities as a CSV file, go to:
   ```
-  http://127.0.0.1:5000/api/reading_activities?grp=INFSCI2470Spring2023
+  http://127.0.0.1:5000/api/raw_reading_activities?grp=INFSCI2470Spring2023
+  ```
+
+- To generate an Excel report for quiz results, go to:
+  ```
+  http://127.0.0.1:5000/api/xls_quiz_results?grp=INFSCI2470Spring2023
   ```
 
 Replace `INFSCI2470Spring2023` with the appropriate group identifier for your data.
@@ -58,18 +63,18 @@ Obtain a TSV or CSV file containing the quiz data you want to process.
 Run the script:
 
 ```bash
-python report.py path/to/input_file.tsv path/to/output_file.xlsx
+python cli-report.py path/to/input_file.tsv path/to/output_file.xlsx
 ```
 
 E.g.
 ```bash
-python3 report.py /Users/rully/Downloads/quiz_results.csv  /Users/rully/Downloads/ISD_rc_results.xlsx  
-````
+python3 cli-report.py /Users/rully/Downloads/quiz_results.csv  /Users/rully/Downloads/ISD_rc_results.xlsx  
+```
 
 You can also provide a delimiter using the -d or --delimiter option:
 
 ```bash
-python report.py -d '\t' path/to/input_file.tsv path/to/output_file.xlsx
+python cli-report.py -d '\t' path/to/input_file.tsv path/to/output_file.xlsx
 ```
 
 The script will read the data, process it, print the results, and save the results to an Excel file named `results.xlsx`. The Excel file will have two sheets:

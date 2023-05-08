@@ -8,6 +8,9 @@
 import csv
 from flask import Flask, jsonify, request, Response
 import mysql.connector
+from flask import send_file
+from lib_report import process_data, write_to_excel
+import io
 
 HOST = 'localhost'
 DATABASE = 'readingcircle_dev'
@@ -60,7 +63,7 @@ WHERE s.grp = %s;
     return header, results
 
 
-@app.route('/api/quiz_results', methods=['GET'])
+@app.route('/api/raw_quiz_results', methods=['GET'])
 def quiz_results():
     grp = request.args.get('grp')
     if grp:
@@ -76,7 +79,7 @@ def quiz_results():
         return jsonify({"error": "Please provide a 'grp' parameter."}), 400
 
 
-@app.route('/api/reading_activities', methods=['GET'])
+@app.route('/api/raw_reading_activities', methods=['GET'])
 def reading_activities():
     grp = request.args.get('grp')
     if grp:
@@ -87,6 +90,32 @@ def reading_activities():
             csv_output,
             mimetype="text/csv",
             headers={"Content-Disposition": "attachment;filename=reading_activities.csv"},
+        )
+    else:
+        return jsonify({"error": "Please provide a 'grp' parameter."}), 400
+
+
+@app.route('/api/xls_quiz_results', methods=['GET'])
+def generate_report():
+    grp = request.args.get('grp')
+    if grp:
+        header, results = get_quiz_results(grp)
+
+        data = [dict(zip(header, row)) for row in results]
+
+        user_docno_correct, user_docsrc_correct, docno_question_counts, docsrc_question_counts = \
+            process_data(data)
+
+        output_file = io.BytesIO()
+        write_to_excel(user_docno_correct, user_docsrc_correct, docno_question_counts, docsrc_question_counts,
+                       output_file)
+        output_file.seek(0)
+
+        return send_file(
+            output_file,
+            as_attachment=True,
+            download_name='ISD_rc_results.xlsx',
+            mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         )
     else:
         return jsonify({"error": "Please provide a 'grp' parameter."}), 400
