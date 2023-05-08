@@ -1,7 +1,7 @@
 import argparse
 import csv
 
-from lib_report import process_data, write_to_excel
+from lib_report import process_quiz_results, write_quiz_results_to_excel
 
 
 def read_data(file_path, delimiter):
@@ -25,7 +25,7 @@ if __name__ == "__main__":
         data = read_data(args.input_file, '\t')
     else:
         data = read_data(args.input_file, args.delimiter)
-    user_docno_correct, user_docsrc_correct, docno_question_counts, docsrc_question_counts = process_data(data)
+    user_docno_correct, user_docsrc_correct, docno_question_counts, docsrc_question_counts = process_quiz_results(data)
 
-    write_to_excel(user_docno_correct, user_docsrc_correct, docno_question_counts, docsrc_question_counts, args.output_file)
+    write_quiz_results_to_excel(user_docno_correct, user_docsrc_correct, docno_question_counts, docsrc_question_counts, args.output_file)
     print(f"Results saved to {args.output_file}")

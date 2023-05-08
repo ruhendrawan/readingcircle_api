@@ -14,7 +14,7 @@ def col_letter(col_idx):
     return letter
 
 
-def process_data(data):
+def process_quiz_results(data):
     user_docno_correct = defaultdict(lambda: defaultdict(int))
     user_docsrc_correct = defaultdict(lambda: defaultdict(int))
     docno_question_counts = defaultdict(int)
@@ -29,7 +29,7 @@ def process_data(data):
 
     return user_docno_correct, user_docsrc_correct, docno_question_counts, docsrc_question_counts
 
-def write_to_excel(user_docno_correct, user_docsrc_correct, docno_question_counts, docsrc_question_counts, output_file):
+def write_quiz_results_to_excel(user_docno_correct, user_docsrc_correct, docno_question_counts, docsrc_question_counts, output_file):
     wb = Workbook()
 
     ws1 = wb.active
