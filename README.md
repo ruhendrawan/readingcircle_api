@@ -55,12 +55,21 @@ Replace `INFSCI2470Spring2023` with the appropriate group identifier for your da
 
 ### Usage
 
-1. Update the `file_path` variable in the `report.py` script with the path to your TSV or CSV file containing quiz data.
-2. Set the `delimiter` variable in the `report.py` script to `'\t'` for TSV files or `','` for CSV files.
-3. Run the script:
+1. Run the script:
 
 ```bash
-python report.py
+python report.py path/to/input_file.tsv path/to/output_file.xlsx
+```
+
+E.g.
+```bash
+python3 report.py /Users/rully/Downloads/quiz_results.csv  /Users/rully/Downloads/ISD_rc_results.xlsx  
+````
+
+You can also provide a delimiter using the -d or --delimiter option:
+
+```bash
+python report.py -d '\t' path/to/input_file.tsv path/to/output_file.xlsx
 ```
 
 The script will read the data, process it, print the results, and save the results to an Excel file named `results.xlsx`. The Excel file will have two sheets:
