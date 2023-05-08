@@ -51,11 +51,11 @@ Replace `INFSCI2470Spring2023` with the appropriate group identifier for your da
 
 ### Setup
 
-1. Obtain a TSV or CSV file containing the quiz data you want to process.
+Obtain a TSV or CSV file containing the quiz data you want to process.
 
 ### Usage
 
-1. Run the script:
+Run the script:
 
 ```bash
 python report.py path/to/input_file.tsv path/to/output_file.xlsx
