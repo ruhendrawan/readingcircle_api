@@ -52,7 +52,7 @@ def write_quiz_results_to_excel(user_docno_correct, user_docsrc_correct, docno_q
     ws2.append(max_row)
     # Add formula to compute the sum of columns B, C, and D
     cell = ws2.cell(row=2, column=len(header) + 1,
-             value=f"=SUM(B{2}:{col_letter(len(header))}{2})")
+             value="=SUM(B{0}:{col_letter(len(header))}{0})".format(2))
     cell.fill = gray_fill
 
     row_number = 3
