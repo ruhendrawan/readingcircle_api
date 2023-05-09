@@ -62,7 +62,7 @@ def write_quiz_results_to_excel(user_docno_correct, user_docsrc_correct, docno_q
 
         # Add formula to compute the sum of columns B, C, and D
         cell = ws2.cell(row=row_number, column=len(user_row) + 1,
-                 value=f"=SUM(B{row_number}:{col_letter(len(header))}{row_number})")
+                 value="=SUM(B{0}:{col_letter(len(header))}{0})".format(row_number))
         cell.fill = gray_fill
 
         # Add formula to compute column E divided by $E$2
