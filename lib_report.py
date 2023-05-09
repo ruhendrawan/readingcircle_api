@@ -46,7 +46,7 @@ def write_quiz_results_to_excel(user_docno_correct, user_docsrc_correct, docno_q
     gray_fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type="solid")
 
     ws2 = wb.create_sheet("User_DocSrc", -1)
-    header = ["User"] + [f"{docno}" for docno in sorted(docsrc_question_counts)]
+    header = ["User"] + ["{0}".format(docno) for docno in sorted(docsrc_question_counts)]
     ws2.append(header)
     max_row = ["Max"] + [docsrc_question_counts[docno] for docno in sorted(docsrc_question_counts)]
     ws2.append(max_row)
