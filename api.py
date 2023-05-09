@@ -107,7 +107,8 @@ def xls_quiz_results():
             process_quiz_results(data)
 
         output_file = io.BytesIO()
-        write_quiz_results_to_excel(user_docno_correct, user_docsrc_correct, docno_question_counts, docsrc_question_counts,
+        write_quiz_results_to_excel(user_docno_correct, user_docsrc_correct,
+                                    docno_question_counts, docsrc_question_counts,
                                     output_file)
         output_file.seek(0)
 
