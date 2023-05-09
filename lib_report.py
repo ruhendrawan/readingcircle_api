@@ -34,7 +34,7 @@ def write_quiz_results_to_excel(user_docno_correct, user_docsrc_correct, docno_q
 
     ws1 = wb.active
     ws1.title = "User_DocNo"
-    header = ["User"] + [f"{docno}" for docno in sorted(docno_question_counts)]
+    header = ["User"] + ["{0}".format(docno) for docno in sorted(docno_question_counts)]
     ws1.append(header)
     max_row = ["Max"] + [docno_question_counts[docno] for docno in sorted(docno_question_counts)]
     ws1.append(max_row)
