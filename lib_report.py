@@ -67,7 +67,7 @@ def write_quiz_results_to_excel(user_docno_correct, user_docsrc_correct, docno_q
 
         # Add formula to compute column E divided by $E$2
         cell = ws2.cell(row=row_number, column=len(user_row) + 2,
-                 value=f"=ROUND({0}{1}/${0}$2*100, 2)".format(col_letter(len(header) + 1),row_number))
+                 value="=ROUND({0}{1}/${0}$2*100, 2)".format(col_letter(len(header) + 1),row_number))
         cell.font = Font(bold=True)
         cell.fill = gray_fill
 
