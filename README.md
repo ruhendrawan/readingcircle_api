@@ -7,7 +7,7 @@ This project consists of two main components:
 
 ## Dependencies
 
-- Python 3.6+
+- Python 3.4+
 - openpyxl
 - Flask
 - mysql-connector-python
