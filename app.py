@@ -28,6 +28,7 @@ def get_quiz_results(grp):
         SELECT * FROM submitted_answers s
         INNER JOIN questions q ON s.idquestions = q.idquestions
         INNER JOIN document d ON d.docid = q.docid
+        INNER JOIN doc_lecture dl on dl.docno = d.docno
         WHERE s.grp = %s
         ORDER BY s.time DESC;
     '''
